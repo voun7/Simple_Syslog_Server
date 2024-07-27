@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Syslog Server</title>
+</head>
+<body>
+    <h1>Received Logs</h1>
+    <ul>
+        {% for log in logs %}
+            <li>{{ log }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
