@@ -89,7 +89,7 @@ def schedule_daily_tasks(target_hr: int = 12) -> None:
             time.sleep(remaining_time.total_seconds())
 
 
-def run_syslog_server(port: int = 514) -> None:
+def run_syslog_server(port: int = 1514) -> None:
     with UDPServer(("0.0.0.0", port), SyslogUDPHandler) as server:
         logging.info(f"Listening on port {port} for syslog messages...")
         server.serve_forever()
