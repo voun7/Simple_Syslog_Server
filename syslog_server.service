@@ -23,3 +23,15 @@ Restart=on-failure
 # Tell systemd to automatically start this service when the system boots
 # (assuming the service is enabled)
 WantedBy=multi-user.target
+
+
+
+# Instructions to create a Systemd Service File for the Python Application
+# Add the above lines into editor: nano /etc/systemd/system/syslog_server.service
+# To reload systemd daemon:     systemctl daemon-reload
+# To start service:             systemctl start syslog_server
+# To stop the service:          systemctl stop syslog_server
+# To enable autostart:          systemctl enable syslog_server
+# To disable autostart:         systemctl disable syslog_server
+# To check status of service:   systemctl status syslog_server
+# To restart service:           systemctl restart syslog_server

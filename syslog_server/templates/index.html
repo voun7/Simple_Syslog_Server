@@ -17,6 +17,24 @@
         h1 {
             color: #BB86FC;
             margin-bottom: 0px;
+            margin: 0;
+        }
+        #main {
+          border: 1px dotted black;
+          display: flex;
+          align-items: center;
+        }
+        .clear-button {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #BB86FC;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .clear-button:hover {
+            background-color: #9C6DD6;
         }
         ul {
             list-style: none;
@@ -61,7 +79,12 @@
     </script>
 </head>
 <body>
-<h1>Received Logs</h1>
+<div id="main">
+    <h1>Received Logs</h1>
+    <form action="{{ url_for('clear_logs_button') }}" method="post">
+        <button class="clear-button" type="submit">Clear Logs</button>
+    </form>
+</div>
 <ul id="log-list">
     {% for log in logs %}
     <li class="log-item">{{ log }}</li>

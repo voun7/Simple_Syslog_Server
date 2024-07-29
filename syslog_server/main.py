@@ -7,7 +7,7 @@ from pathlib import Path
 from socketserver import BaseRequestHandler, UDPServer
 from threading import Thread
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
@@ -69,9 +69,18 @@ def index():
     return render_template("index.html", logs=logs)
 
 
+@app.route('/', methods=['POST'])
+def clear_logs_button():
+    """
+    Route to clear logs and reload page
+    """
+    clear_logs()
+    return redirect('/')
+
+
 def clear_logs() -> None:
     logs.clear()
-    logging.info("Logs cleared")
+    logging.warning("Logs cleared")
 
 
 def schedule_daily_tasks(target_hr: int = 12) -> None:
