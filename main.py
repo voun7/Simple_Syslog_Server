@@ -83,11 +83,12 @@ def clear_logs() -> None:
     logging.warning("Logs cleared")
 
 
-def schedule_daily_tasks(target_hr: int = 12) -> None:
+def schedule_daily_tasks(target_hr: int = 14) -> None:
     while True:
         now = datetime.now().replace(microsecond=0)
         target_time = now.replace(hour=target_hr, minute=0, second=0)
         if now == target_time:
+            logging.info("Staring daily scheduled tasks")
             # ----- Tasks -----
             clear_logs()
             time.sleep(1)
@@ -95,6 +96,7 @@ def schedule_daily_tasks(target_hr: int = 12) -> None:
             remaining_time = target_time - now
             if remaining_time < timedelta():
                 remaining_time = remaining_time + timedelta(days=1)
+            logging.info(f"Task scheduler sleeping. Duration: {remaining_time}")
             time.sleep(remaining_time.total_seconds())
 
 

@@ -7,10 +7,6 @@ After=syslog.target network-online.target
 # project working directory
 WorkingDirectory=/home/victor/python_programs/Syslog_Server
 
-# program log output
-StandardOutput=journal
-StandardError=journal
-
 # Command to execute when the service is started
 ExecStart=/home/victor/python_programs/Syslog_Server/venv/bin/python3 main.py
 
