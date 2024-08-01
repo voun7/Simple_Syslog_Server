@@ -63,13 +63,16 @@ class SyslogUDPHandler(BaseRequestHandler):
 
 @app.route("/favicon.ico")
 def favicon():
+    """
+    Load website favicon.
+    """
     return app.send_static_file("favicon.ico")
 
 
 @app.route("/")
 def index():
     """
-    Route to display logs
+    Route to display logs.
     """
     return render_template("index.html", logs=logs)
 
@@ -77,7 +80,7 @@ def index():
 @app.route("/", methods=["POST"])
 def clear_logs_button():
     """
-    Route to clear logs and reload page
+    Route to clear logs and reload page.
     """
     clear_logs()
     return redirect("/")
