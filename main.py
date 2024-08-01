@@ -32,13 +32,13 @@ def setup_logging() -> None:
     log_file = log_dir / "runtime.log"
 
     # Create handlers
-    file_handler = TimedRotatingFileHandler(log_file, when='midnight', interval=1, backupCount=7, encoding='utf-8')
+    file_handler = TimedRotatingFileHandler(log_file, when="midnight", interval=1, backupCount=7, encoding="utf-8")
     file_handler.namer = log_namer
     file_handler.setLevel(logging.DEBUG)
     console_handler = logging.StreamHandler(stream=sys.stdout)
     console_handler.setLevel(logging.INFO)
 
-    log_file_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    log_file_format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     file_handler.setFormatter(log_file_format)
 
     # Add handlers to the base_logger
@@ -53,15 +53,20 @@ class SyslogUDPHandler(BaseRequestHandler):
 
     def handle(self) -> None:
         message = self.request[0].decode("utf-8").replace("\x00", "")
-        message = message[4:] if message.startswith('<') else message  # remove logger level numbers from message
+        message = message[4:] if message.startswith("<") else message  # remove logger level numbers from message
         new_log = f"{self.client_address[0]} : {message}"
         logs.append(new_log)
 
         # Emit the new log message to all connected WebSocket clients
-        socketio.emit('new_log', {'log': new_log})
+        socketio.emit("new_log", {"log": new_log})
 
 
-@app.route('/')
+@app.route("/favicon.ico")
+def favicon():
+    return app.send_static_file("favicon.ico")
+
+
+@app.route("/")
 def index():
     """
     Route to display logs
@@ -69,13 +74,13 @@ def index():
     return render_template("index.html", logs=logs)
 
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def clear_logs_button():
     """
     Route to clear logs and reload page
     """
     clear_logs()
-    return redirect('/')
+    return redirect("/")
 
 
 def clear_logs() -> None:
