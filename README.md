@@ -13,7 +13,7 @@ git clone https://github.com/voun7/Simple_Syslog_Server.git
 ```
 
 ```commandline
-cd Syslog_Server
+cd Simple_Syslog_Server
 ```
 
 ```commandline
