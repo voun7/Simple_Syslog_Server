@@ -1,15 +1,15 @@
-# Syslog Server
+# Simple Syslog Server
 
 ![python version](https://img.shields.io/badge/Python-3.12-blue)
 
-Simple syslog server with web interface.
+A very simple fast syslog server with a web interface.
 
 ## Linux Setup Instructions
 
 ### Install Packages:
 
 ```
-git clone https://github.com/voun7/Syslog_Server.git
+git clone https://github.com/voun7/Simple_Syslog_Server.git
 ```
 
 ```commandline
@@ -30,10 +30,10 @@ pip install -r requirements.txt
 
 ### Setup a Systemd Service:
 
-Add the contents of `Syslog_Server.service` into the editor
+Add the contents of `Simple_Syslog_Server.service` into the editor
 
 ```commandline
-nano /etc/systemd/system/Syslog_Server.service
+nano /etc/systemd/system/Simple_Syslog_Server.service
 ```
 
 Run the following commands to finish setup
@@ -43,13 +43,13 @@ systemctl daemon-reload
 ```
 
 ```commandline
-systemctl start Syslog_Server
+systemctl start Simple_Syslog_Server
 ```
 
 ```commandline
-systemctl status Syslog_Server
+systemctl status Simple_Syslog_Server
 ```
 
 ```commandline
-systemctl enable Syslog_Server
+systemctl enable Simple_Syslog_Server
 ```
