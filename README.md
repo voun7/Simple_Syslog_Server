@@ -53,3 +53,14 @@ systemctl status Simple_Syslog_Server
 ```commandline
 systemctl enable Simple_Syslog_Server
 ```
+
+
+## Usage
+
+Send logs to server using ip address of server on port `1514`.
+
+
+Access logs on server using link below.
+```
+http://server_ip_address:9000
+```
