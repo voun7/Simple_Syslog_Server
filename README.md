@@ -9,7 +9,7 @@ Simple syslog server with web interface.
 ### Install Packages:
 
 ```
-git clone https://<your-fine-grained-token>@github.com/voun-github/Syslog_Server.git
+git clone https://github.com/voun7/Syslog_Server.git
 ```
 
 ```commandline
