@@ -1,0 +1,23 @@
+[Unit]
+# Service description
+Description=A very simple and fast syslog server with a web interface.
+After=syslog.target network-online.target
+
+[Service]
+# Define username dynamically. CHANGE TO YOUR USERNAME.
+Environment="USER_NAME=your_user_name"
+Environment="SYSLOG_WORKDIR=/home/${USER_NAME}/Simple_Syslog_Server"
+Environment="SYSLOG_PYTHON=${SYSLOG_WORKDIR}/venv/bin/python3"
+
+# Project working directory
+WorkingDirectory=${SYSLOG_WORKDIR}
+
+# Command to execute when the service is started
+ExecStart=${SYSLOG_PYTHON} main.py
+
+# Automatically restart the service if it crashes
+Restart=on-failure
+
+[Install]
+# Tell systemd to automatically start this service when the system boots (assuming the service is enabled)
+WantedBy=multi-user.target
