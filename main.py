@@ -7,7 +7,7 @@ from pathlib import Path
 from socketserver import BaseRequestHandler, UDPServer
 from threading import Thread
 
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
@@ -72,9 +72,11 @@ def favicon():
 @app.route("/")
 def index():
     """
-    Route to display logs.
+    Route to display logs with optional device filtering.
     """
-    return render_template("index.html", logs=logs)
+    device = request.args.get("device", "").strip()
+    filtered_logs = [log for log in logs if log.startswith(f"{device} ")] if device else logs
+    return render_template("index.html", logs=filtered_logs, current_device=device)
 
 
 @app.route("/", methods=["POST"])
